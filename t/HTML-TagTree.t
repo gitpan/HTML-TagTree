@@ -5,7 +5,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 BEGIN { use_ok('HTML::TagTree') };
 
 #########################
@@ -22,5 +22,9 @@ ok (defined $body, 'child object created');
 $html_output = $html->get_html_text(0,1);
 $html->release;
 
+my $textarea = HTML::TagTree->new('textarea','','name=test_textarea placeholder="Enter some text"');
+my $result = $textarea->get_html_text(0,1);
+ok ($result eq '<textarea name="test_textarea" placeholder="Enter some text" ></textarea>',
+    'textarea is good. No auto newline before end tag');
 done_testing();
 
