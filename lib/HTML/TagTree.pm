@@ -1171,12 +1171,13 @@ __END__
   
    use HTML::TagTree;
 
-   my $html = HTML::TagTree->new('html');
-   my $head = $html->head();
-   my $body = $html->body();
+   my $html = HTML::TagTree->new('html');   # Define the top of the tree of objects.
+   my $head = $html->head();                # Put a 'head' branch on the tree.
+   my $body = $html->body();                # Put a 'body' branch on the tree
    $head->title("This is the Title of Gary's Page, the opening title...");
    $head->meta('', 'name=author CONTENT="Dan DeBrito"');
-   $body->div->h1('Hello Dolly');
+   $body->div->h1('Hello Dolly');           # Example of method chaining to create
+                                            # a long branch.
    my $table = $body->table('', 'width=100% border=1');
    my $row1 = $table->tr();
    $row1->td('cell a');
@@ -1184,10 +1185,10 @@ __END__
    $table->tr->td('This is a new row with new cell');  
    $table->tr->td('This is a another new row with new data');
 
-   # Print out the actual HTML
+   # Print to STDOUT the actual HTML representation of the tree
    $html->print_html();
    
-   # Put html into a scalar variable
+   # Put HTML into a scalar variable
    my $html_source = $html->get_html_text();
 
    # Force destruction of object tree
@@ -1244,8 +1245,14 @@ __END__
                time of HTML rendering.
                Example of attributes:
                   'id=first_name name=fn class=str_cl'
-      get_html_text()
-         Return valid HTML representation of tag tree starting at tab object.
+      get_html_text(indent_level, no_whitespace_flag)
+         Returns valid HTML representation of tag tree starting at the object.
+         Arguments:
+            indent_level:
+               Starting amount of indentation. Typically leave undef or 0.
+            no_whitespace_flag:
+               Set to '1' to prevent insertion of linefeeds and whitespace padding
+               for legibility.
       print_html()
          Prints the valid HTML to STDOUT
       release()
