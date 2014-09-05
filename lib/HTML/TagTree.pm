@@ -18,7 +18,7 @@ use version;
 
 my $DOUBLE_QUOTE = '"';
 my $SINGLE_QUOTE = "'";
-our $VERSION = qv('1.00');
+our $VERSION = qv('1.03');
 
 my %preprocess_tag;
 my %empty_tags = (
@@ -1289,7 +1289,7 @@ __END__
 
 =head1 VERSION
 
-HTML::TagTree version 1.0.
+HTML::TagTree version 1.03.
 
 =head1 PREREQUISITES
 
